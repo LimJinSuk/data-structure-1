@@ -1,13 +1,15 @@
 package stack.calc;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import stack.ArrayList;
-import stack.Iterator;
-import stack.List;
+import list.ArrayList;
+import list.Iterator;
+import list.List;
 import stack.Stack;
 import stack.StackException;
+import tree.LinkedTree;
 
 public class Calculator {
 	
@@ -30,9 +32,15 @@ public class Calculator {
 		try {
 			
 			List<String> tokens = parseExp(exp.replaceAll("\\s+", ""));
-			result = evaluteExp( tokens );
-	
-//			LinkedTree<String> tree = makeExpTree( tokens );
+			LinkedTree<String> tree = 
+					LinkedTree.toExpressionTree( tokens );
+			
+			//test
+			List<String> l = new ArrayList<String>();
+			tree.traversalInorder( l );
+			System.out.println( Arrays.toString( l.toArray() ) );
+			
+//			result = evaluteExp( tokens );
 //			result = evaluteExp( tree );
 			
 		} catch( Exception e ) {

@@ -1,9 +1,14 @@
 package tree;
 
 import list.List;
+import stack.Stack;
+import stack.StackException;
 
 public class LinkedTree<E> {
 	private TreeNode<E> root;
+	
+	public LinkedTree() {
+	}
 	
 	public LinkedTree( E data ) {
 		root = new TreeNode<E>( data );
@@ -72,6 +77,35 @@ public class LinkedTree<E> {
 			traversalInorder( node.right, list );
 		}
 	}	
+	
+	public static LinkedTree<String> toExpressionTree( 
+		List<String> tokens ) 
+		throws StackException {
+		LinkedTree<String> tree = new LinkedTree<String>();
+
+		int index = 0;
+		Stack<TreeNode<String>> stack = new Stack<TreeNode<String>>();
+		
+		while( true ) {
+			String token = tokens.get( index );
+			TreeNode<String> treeNode = new TreeNode<String>( token );
+			
+			if( token.matches("-?\\d+(\\.\\d+)?") ) {
+				stack.push( treeNode );
+			} else {
+				treeNode.right = stack.pop();
+				treeNode.left = stack.pop();
+				stack.push( treeNode );
+			}
+			
+			if( ++index == tokens.size() ) {
+				tree.root = stack.pop();
+				break;
+			}
+		}
+		
+		return tree;
+	}
 	
 	public static class TreeNode<E>{
 		private E data;
