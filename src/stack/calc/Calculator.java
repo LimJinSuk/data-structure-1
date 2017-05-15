@@ -23,7 +23,7 @@ public class Calculator {
 		return instance;
 	}
 	
-	public double calculate( String exp ) {
+	public double calculate( String exp ) throws CalculatorException {
 		double result = 0f;
 		try {
 			List<String> tokens = parseExp(exp.replaceAll("\\s+", ""));
@@ -37,8 +37,8 @@ public class Calculator {
 			//System.out.println( Arrays.toString( l.toArray() ) );
 			result = LinkedTree.evaluteExpression( tree.getRoot() );
 			
-		} catch( Exception e ) {
-			e.printStackTrace();
+		} catch( StackException e ) {
+			throw new CalculatorException( "abnormal expression" );
 		}
 		
 		return result;
