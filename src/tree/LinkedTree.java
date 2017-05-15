@@ -28,6 +28,14 @@ public class LinkedTree<E> {
 	public void traversalPostorder( List<E> list ){
 		traversalPostorder( root, list );
 	}
+
+	public void traversalPreorder( List<E> list ){
+		traversalPreorder( root, list );
+	}
+	
+	public void traversalInorder( List<E> list ){
+		traversalInorder( root, list );
+	}
 	
 	public void traversalPostorder( TreeNode<E> node, List<E> list ){
 		if( node.left != null ) {
@@ -40,6 +48,30 @@ public class LinkedTree<E> {
 		
 		list.add( node.data );
 	}
+
+	public void traversalPreorder( TreeNode<E> node, List<E> list ){
+		list.add( node.data );
+
+		if( node.left != null ) {
+			traversalPreorder( node.left, list );
+		}
+		
+		if( node.right != null ) {
+			traversalPreorder( node.right, list );
+		}
+	}
+	
+	public void traversalInorder( TreeNode<E> node, List<E> list ){
+		if( node.left != null ) {
+			traversalInorder( node.left, list );
+		}
+
+		list.add( node.data );
+		
+		if( node.right != null ) {
+			traversalInorder( node.right, list );
+		}
+	}	
 	
 	public static class TreeNode<E>{
 		private E data;

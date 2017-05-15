@@ -38,7 +38,16 @@ public class LinkedTreeTest {
 		
 		List<String> list = new DoublyLinkedList<String>();
 		tree.traversalPostorder( list );
-		System.out.println( Arrays.toString( list.toArray() ) );
+		System.out.println( "Postorder:" + Arrays.toString( list.toArray() ) );
+	
+		list.removeAll();
+		tree.traversalPreorder( list );
+		System.out.println( "Preorder:" + Arrays.toString( list.toArray() ) );
+
+		list.removeAll();
+		tree.traversalInorder( list );
+		System.out.println( "Inorder:" + Arrays.toString( list.toArray() ) );
+		
 	}
 
 }
