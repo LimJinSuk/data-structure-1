@@ -1,11 +1,8 @@
 package stack.calc;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import list.ArrayList;
-import list.Iterator;
 import list.List;
 import stack.Stack;
 import stack.StackException;
@@ -28,20 +25,17 @@ public class Calculator {
 	
 	public double calculate( String exp ) {
 		double result = 0f;
-		
 		try {
-			
 			List<String> tokens = parseExp(exp.replaceAll("\\s+", ""));
+
+			//result = evaluteExp( tokens );
 			LinkedTree<String> tree = 
 					LinkedTree.toExpressionTree( tokens );
-			
 			//test
-			List<String> l = new ArrayList<String>();
-			tree.traversalInorder( l );
-			System.out.println( Arrays.toString( l.toArray() ) );
-			
-//			result = evaluteExp( tokens );
-//			result = evaluteExp( tree );
+			//List<String> l = new ArrayList<String>();
+			//tree.traversalInorder( l );
+			//System.out.println( Arrays.toString( l.toArray() ) );
+			result = LinkedTree.evaluteExpression( tree.getRoot() );
 			
 		} catch( Exception e ) {
 			e.printStackTrace();
@@ -50,7 +44,7 @@ public class Calculator {
 		return result;
 	}
 
-	private double evaluteExp( List<String> tokens ) throws CalculatorException {
+/*	private double evaluteExp( List<String> tokens ) throws CalculatorException {
 		double result = 0.;
 		
 		try {
@@ -81,7 +75,7 @@ public class Calculator {
 		
 		
 		return result;
-	}
+	}*/
 	
 	private List<String> parseExp( String infix ) throws StackException {
 		List<String> tokens = new ArrayList<String>();
@@ -203,7 +197,7 @@ public class Calculator {
 		}
 	}
 	
-	private static class Util {
+/*	private static class Util {
 		private static boolean isNumeric( String s ) {
 			return s.matches("-?\\d+(\\.\\d+)?");
 		}
@@ -228,5 +222,5 @@ public class Calculator {
 			
 			return result;
 		}
-	}
+	}*/
 }

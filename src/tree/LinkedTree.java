@@ -78,6 +78,39 @@ public class LinkedTree<E> {
 		}
 	}	
 	
+	public static double evaluteExpression( TreeNode<String> treeNode ){
+		double result = 0.;
+		double lValue = 0.;
+		double rValue = 0.;
+		
+		if( treeNode.left != null ) {
+			lValue = evaluteExpression( treeNode.left );
+		}
+
+		if( treeNode.right != null ) {
+			rValue = evaluteExpression( treeNode.right );
+		}
+		
+		switch ( treeNode.data ){
+			case "+" : 
+				result = lValue + rValue;
+				break;
+			case "-" : 
+				result = lValue - rValue;
+				break;
+			case "*" : 
+				result = lValue * rValue;
+				break;
+			case "/" : 
+				result = lValue / rValue;
+				break;
+			default	 :  
+				result = Double.parseDouble( treeNode.data );
+		}
+		
+		return result;
+	}
+	
 	public static LinkedTree<String> toExpressionTree( 
 		List<String> tokens ) 
 		throws StackException {
