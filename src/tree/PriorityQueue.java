@@ -1,7 +1,5 @@
 package tree;
 
-import java.util.Arrays;
-
 import queue.Queue;
 
 public class PriorityQueue<E> implements Queue<E> {
