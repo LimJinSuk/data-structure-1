@@ -87,7 +87,6 @@ public class PriorityQueue<E> implements Queue<E> {
 	}
 	
 	public E peek() {
-		System.out.println( Arrays.toString( arrayHeap ) );
 		return arrayHeap[ 1 ];
 	}	
 }
